@@ -1,4 +1,6 @@
 tmp/
 node_modules/
 npm/
+npm-unpacked/
 git/
+git-unpacked/
