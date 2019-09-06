@@ -1,10 +1,12 @@
 'use strict'
 
 const fs = require('fs');
+const exec = require('child_process').exec;
 
 const mkdirp = require('mkdirp');
 const axios = require('axios');
 const semver = require('semver');
+const rimraf = require('rimraf');
 
 const {options, showHelp} = require('./lib/get-cli-options');
 
@@ -12,6 +14,8 @@ if (options.help) {
   showHelp();
   return;
 }
+
+const info = options.info ? showInfo : function () {};
 
 const packageMap = {
   node: {
@@ -23,9 +27,12 @@ const packageMap = {
   }
 }
 
-// make places to put the downloads.
+// make places to put the downloads and a single
+// place to unpack one download at a time.
 mkdirp.sync('npm');
+mkdirp.sync('npm-unpacked');
 mkdirp.sync('git');
+mkdirp.sync('git-unpacked');
 
 let repoInfo;
 let p;
@@ -43,7 +50,7 @@ if (options.agent === 'node') {
       return repoInfo;
     })
     .catch(e => {
-      console.log(`failed to get ${agentMap.releasesUrl}:`, e);
+      console.error(`failed to get ${agentMap.releasesUrl}:`, e);
       throw e;
     })
 } else {
@@ -66,9 +73,7 @@ p.then(() => {
 
   const versionsToVerify = selectVersions(versionStrings, options.versions);
 
-  if (options.info) {
-    console.log(`versions to verify: ${[versionsToVerify.join(',')]}`);
-  }
+  info(`versions to verify: ${[versionsToVerify.join(',')]}`);
 
   if (versionsToVerify.length === 0) {
     throw new TypeError('No versions to verify');
@@ -78,9 +83,19 @@ p.then(() => {
   // when that gets implemented.
   return verifyThese(versionsToVerify).then(() => versionsToVerify);
 }).then(results => {
-  console.log(results);
+  let status = 0;
+  results.forEach(r => {
+    if (r.status === 'error') {
+      console.error('error', r);
+      status = 1;
+    }
+  })
+  return status;
 }).catch(e => {
-  console.log('unexpected error', e.message, e.stack);
+  console.error('unexpected error', e.message, e.stack);
+  return 1;
+}).then(status => {
+  process.exit(status);
 })
 
 // execute promises sequentially with reduce. the argument "versions"
@@ -90,7 +105,7 @@ function verifyThese (versions) {
     return p
       .then(r => {
         return verify(version)
-          .then(r => {versions[ix] = {version, status: 'good', bytes: r}});
+          .then(r => {versions[ix] = {version, status: 'good'}});
       })
       .catch(e => {
         versions[ix] = {version, status: 'error', error: e};
@@ -106,21 +121,88 @@ function verify (version) {
   const gitUrl = `https://api.github.com/repos/${agentMap.gitUser}/${agentMap.gitRepo}/tarball/${tag}`;
   const gitTarget = `git/${agentMap.gitRepo}-${tag}.tar.gz`;
 
+  info(`verifying version ${version}`);
+
   return download(npmUrl, npmTarget)
     .then(npmBytes => {
+      info(`read ${npmUrl} total bytes ${npmBytes}`);
+    })
+    .catch(e => {
+      throw e
+    })
+    .then(() => {
       return download(gitUrl, gitTarget)
-        .then(gitBytes => {
-          return {npmBytes, gitBytes};
-        })
+    })
+    .then(gitBytes => {
+      info(`read ${gitUrl} (${gitBytes} bytes)`);
     })
     .catch(e => {
       throw e;
     })
-    .then(bytes => {
-      // unpack both files
-      // walk through npm files (subset of git files) and compare
-      // - first size, then contents
-      return bytes;
+    .then(() => {
+      info('removing any unpacked npm package');
+
+      return new Promise((resolve, reject) => {
+        rimraf('npm-unpacked/*', e => {
+          if (e) {
+            reject(e);
+          } else {
+            resolve();
+          }
+        })
+      })
+    })
+    .then(() => {
+      info(`unpacking npm package ${npmTarget}`);
+      return execute(`tar --strip-components=1 -zvxf ${npmTarget} -C npm-unpacked`);
+    })
+    .then(output => {
+      info(`unpacked npm package ${npmTarget}`);
+    })
+    .catch(e => {
+      throw e.error;
+    })
+    .then(() => {
+      info('removing any unpacked git package');
+      return new Promise((resolve, reject) => {
+        rimraf('git-unpacked/*', e => {
+          if (e) {
+            reject(e);
+          } else {
+            resolve();
+          }
+        })
+      })
+    })
+    .then(() => {
+      info(`unpacking git package ${gitTarget}`);
+      return execute(`tar --strip-components=1 -zvxf ${gitTarget} -C git-unpacked`);
+    })
+    .then(() => {
+      info(`unpacked git package ${gitTarget}`);
+    })
+    .catch(e => {
+      throw e.error;
+    })
+    .then(() => {
+      return execute(`diff -qr npm-unpacked/ git-unpacked/`);
+    })
+    .catch(e => {
+      // find
+      // - files that are not the same in npm and git
+      // - files that are only in npm
+      if (e.error.code === 1) {
+        const lines = e.stdout.split('\n');
+        const differences = lines.filter(l => l.indexOf('Only in git-unpacked/:') !== 0);
+        if (differences.length) {
+          console.error(`unexpected differences for ${version}:\n${differences.join('\n')}`);
+          throw new Error('packages are different');
+        }
+      }
+      return e;
+    })
+    .then(output => {
+      //console.log(output.stdout);
     })
 }
 
@@ -129,7 +211,6 @@ function verify (version) {
 //
 function download (url, name) {
   return new Promise((resolve, reject) => {
-
     const axiosOptions = {
       url,
       method: 'GET',
@@ -148,6 +229,23 @@ function download (url, name) {
 }
 
 //
+// execute a command
+//
+function execute (command, options) {
+  return new Promise((resolve, reject) => {
+    options = options || {};
+
+    exec(command, options, (error, stdout, stderr) => {
+      if (error) {
+        reject({error, stdout, stderr});
+      } else {
+        resolve({stdout, stderr});
+      }
+    });
+  });
+}
+
+//
 // get an array of the versions that match the user's requested range
 //
 function selectVersions (versions, requested) {
@@ -157,3 +255,8 @@ function selectVersions (versions, requested) {
   return versions.filter(version => semver.satisfies(version, requested));
 }
 // https://api.github.com/repos/$REPOSITORY_NAME/tarball/$COMMI‌​T_ID
+
+function showInfo (string) {
+  // eslint-disable-next-line no-console
+  console.log(`[ ${string} ]`);
+}
