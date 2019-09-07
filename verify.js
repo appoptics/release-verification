@@ -45,8 +45,6 @@ makeDirs(requiredDirs)
 
 let repoInfo;
 let p;
-let p2;
-let gitRepo;
 let agentMap;
 
 if (options.agent === 'node') {
@@ -69,8 +67,6 @@ if (options.agent === 'node') {
   throw new Error('only the node package is implemented');
 }
 
-let tag;
-
 // kick off the processing here
 p.then(() => {
   // repoInfo.versions['6.7.0-rc3'].dist.tarball is npm
@@ -88,8 +84,7 @@ p.then(() => {
     throw new TypeError('No versions to verify');
   }
 
-  // here needs to begin sequential processing of multiple versions
-  // when that gets implemented.
+  // sequentially process the versions selected.
   return verifyThese(versionsToVerify).then(() => versionsToVerify);
 }).then(results => {
   let status = 0;
