@@ -27,12 +27,21 @@ const packageMap = {
   }
 }
 
-// make places to put the downloads and a single
-// place to unpack one download at a time.
-mkdirp.sync('npm');
-mkdirp.sync('npm-unpacked');
-mkdirp.sync('git');
-mkdirp.sync('git-unpacked');
+// make places to put the downloads and a single place
+// to unpack one download at a time. no need to handle
+// errors as nothing can work if these fail.
+const requiredDirs = ['npm', 'npm-unpacked', 'git', 'git-unpacked'];
+
+makeDirs(requiredDirs)
+  .then(created => {
+    if (created.length) {
+      info(`dirs created: ${created.join(', ')}`);
+    }
+  })
+  .catch(e => {
+    fatal('could not create required directors', e);
+  })
+
 
 let repoInfo;
 let p;
@@ -50,7 +59,7 @@ if (options.agent === 'node') {
       return repoInfo;
     })
     .catch(e => {
-      console.error(`failed to get ${agentMap.releasesUrl}:`, e);
+      fatal(`failed to get ${agentMap.releasesUrl}:`, e);
       throw e;
     })
 } else {
@@ -86,13 +95,13 @@ p.then(() => {
   let status = 0;
   results.forEach(r => {
     if (r.status === 'error') {
-      console.error('error', r);
+      fatal('error', r);
       status = 1;
     }
   })
   return status;
 }).catch(e => {
-  console.error('unexpected error', e.message, e.stack);
+  fatal('unexpected error', e.message, e.stack);
   return 1;
 }).then(status => {
   process.exit(status);
@@ -111,9 +120,10 @@ function verifyThese (versions) {
         versions[ix] = {version, status: 'error', error: e};
       })
   }, Promise.resolve()).then(() => versions);
-};
+}
 
 // verify the specified version
+// repoInfo.versions['6.6.0'].repository: {type: "git", url: "git+https://github.com/appoptics/appoptics-apm-node.git"}
 function verify (version) {
   const tag = agentMap.tagTemplate.replace('${tag}', version);
   const npmUrl = repoInfo.versions[version].dist.tarball;
@@ -185,7 +195,7 @@ function verify (version) {
       throw e.error;
     })
     .then(() => {
-      return execute(`diff -qr npm-unpacked/ git-unpacked/`);
+      return execute('diff -qr npm-unpacked/ git-unpacked/');
     })
     .catch(e => {
       // find
@@ -195,7 +205,7 @@ function verify (version) {
         const lines = e.stdout.split('\n');
         const differences = lines.filter(l => l.indexOf('Only in git-unpacked/:') !== 0);
         if (differences.length) {
-          console.error(`unexpected differences for ${version}:\n${differences.join('\n')}`);
+          fatal(`unexpected differences for ${version}:\n${differences.join('\n')}`);
           throw new Error('packages are different');
         }
       }
@@ -254,9 +264,38 @@ function selectVersions (versions, requested) {
   }
   return versions.filter(version => semver.satisfies(version, requested));
 }
-// https://api.github.com/repos/$REPOSITORY_NAME/tarball/$COMMI‌​T_ID
+// https://api.github.com/repos/$REPOSITORY_NAME/tarball/$COMMIT_ID
 
 function showInfo (string) {
   // eslint-disable-next-line no-console
   console.log(`[ ${string} ]`);
+}
+
+function fatal (...args) {
+  // eslint-disable-next-line no-console
+  console.error(...args);
+}
+
+
+async function makeDirs (dirs, opts = {}) {
+  const made = [];
+  for (let i = 0; i < dirs.length; i++) {
+    const m = await pmkdirp(dirs[i]);
+    if (m) {
+      made.push(dirs[i]);
+    }
+  }
+  return made;
+}
+
+function pmkdirp (dir, opts = {}) {
+  return new Promise((resolve, reject) => {
+    mkdirp(dir, opts, function (e, made) {
+      if (e) {
+        reject(e);
+      } else {
+        resolve(made);
+      }
+    })
+  })
 }
