@@ -1,6 +1,6 @@
 tmp/
 node_modules/
-npm/
-npm-unpacked/
+pkg/
+pkg-unpacked/
 git/
 git-unpacked/

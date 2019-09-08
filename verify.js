@@ -1,296 +1,49 @@
 'use strict'
 
-const fs = require('fs');
-const exec = require('child_process').exec;
-
-const mkdirp = require('mkdirp');
-const axios = require('axios');
-const semver = require('semver');
-const rimraf = require('rimraf');
+const {makeNpmVerifier} = require('./lib/npm-verifier');
 
 const {options, showHelp} = require('./lib/get-cli-options');
 
-if (options.help) {
+
+if (options.help || options._.length !== 1) {
   showHelp();
   return;
 }
 
-const info = options.info ? showInfo : function () {};
+// use p rather than the long name package because it's reserved by javascript.
+const pkg = options._[0];
+const {versions, repository, info, differences} = options;
 
-const packageMap = {
-  node: {
-    name: 'appoptics-apm',
-    releasesUrl: 'https://registry.npmjs.com/appoptics-apm',
-    gitUser: 'appoptics',
-    gitRepo: 'appoptics-apm-node',
-    tagTemplate: 'v${tag}',
-  }
+const verifier = {
+  npm: makeNpmVerifier,
 }
 
-// make places to put the downloads and a single place
-// to unpack one download at a time. no need to handle
-// errors as nothing can work if these fail.
-const requiredDirs = ['npm', 'npm-unpacked', 'git', 'git-unpacked'];
+async function main () {
+  const nv = await verifier[repository](pkg, {info, differences});
 
-makeDirs(requiredDirs)
-  .then(created => {
-    if (created.length) {
-      info(`dirs created: ${created.join(', ')}`);
+  const versionList = nv.getMatchingVersions(versions);
+
+  const results = await nv.verifyThese(versionList);
+
+  // eslint-disable-next-line no-console
+  console.log('');
+
+  results.forEach(result => {
+    const diffResults = nv.extractDifferences(result, {differences});
+    if (diffResults) {
+      // eslint-disable-next-line no-console
+      console.log(`unexpected differences for ${result.version}:\n${diffResults.join('\n')}`);
     }
+
   })
-  .catch(e => {
-    fatal('could not create required directors', e);
-  })
-
-
-let repoInfo;
-let p;
-let agentMap;
-
-if (options.agent === 'node') {
-  agentMap = packageMap.node;
-
-  p = axios.get(agentMap.releasesUrl)
-    .then(info => {
-      repoInfo = info.data;
-      // in theory normalize this across node, ruby, python?
-      return repoInfo;
-    })
-    .catch(e => {
-      fatal(`failed to get ${agentMap.releasesUrl}:`, e);
-      throw e;
-    })
-} else {
-  // The gems go to rubygems.org.
-  // https://rubygems.org/api/v1/gems/appoptics_apm.json
-  // The oboe version is packaged with the gem in ext/oboe_metal/src/VERSION.
-  throw new Error('only the node package is implemented');
 }
 
-// kick off the processing here
-p.then(() => {
-  // repoInfo.versions['6.7.0-rc3'].dist.tarball is npm
-  // version of tarball
-  const versions = repoInfo.versions;
+// The gems go to rubygems.org.
+// https://rubygems.org/api/v1/gems/appoptics_apm.json
+// The oboe version is packaged with the gem in ext/oboe_metal/src/VERSION.
 
-  // get versions for verification
-  const versionStrings = Object.keys(versions);
 
-  const versionsToVerify = selectVersions(versionStrings, options.versions);
-
-  info(`versions to verify: ${[versionsToVerify.join(',')]}`);
-
-  if (versionsToVerify.length === 0) {
-    throw new TypeError('No versions to verify');
-  }
-
-  // sequentially process the versions selected.
-  return verifyThese(versionsToVerify).then(() => versionsToVerify);
-}).then(results => {
-  let status = 0;
-  results.forEach(r => {
-    if (r.status === 'error') {
-      fatal('error', r);
-      status = 1;
-    }
-  })
-  return status;
-}).catch(e => {
-  fatal('unexpected error', e.message, e.stack);
-  return 1;
-}).then(status => {
-  process.exit(status);
+main().then(r => {
+  // eslint-disable-next-line no-console
+  console.log('done');
 })
-
-// execute promises sequentially with reduce. the argument "versions"
-// is modified in place with the results as they are executed.
-function verifyThese (versions) {
-  return versions.reduce((p, version, ix) => {
-    return p
-      .then(r => {
-        return verify(version)
-          .then(r => {versions[ix] = {version, status: 'good'}});
-      })
-      .catch(e => {
-        versions[ix] = {version, status: 'error', error: e};
-      })
-  }, Promise.resolve()).then(() => versions);
-}
-
-// verify the specified version
-// repoInfo.versions['6.6.0'].repository: {type: "git", url: "git+https://github.com/appoptics/appoptics-apm-node.git"}
-function verify (version) {
-  const tag = agentMap.tagTemplate.replace('${tag}', version);
-  const npmUrl = repoInfo.versions[version].dist.tarball;
-  const npmTarget = `npm/npm-${tag}.tar.gz`;
-  const gitUrl = `https://api.github.com/repos/${agentMap.gitUser}/${agentMap.gitRepo}/tarball/${tag}`;
-  const gitTarget = `git/${agentMap.gitRepo}-${tag}.tar.gz`;
-
-  info(`verifying version ${version}`);
-
-  return download(npmUrl, npmTarget)
-    .then(npmBytes => {
-      info(`read ${npmUrl} total bytes ${npmBytes}`);
-    })
-    .catch(e => {
-      throw e
-    })
-    .then(() => {
-      return download(gitUrl, gitTarget)
-    })
-    .then(gitBytes => {
-      info(`read ${gitUrl} (${gitBytes} bytes)`);
-    })
-    .catch(e => {
-      throw e;
-    })
-    .then(() => {
-      info('removing any unpacked npm package');
-
-      return new Promise((resolve, reject) => {
-        rimraf('npm-unpacked/*', e => {
-          if (e) {
-            reject(e);
-          } else {
-            resolve();
-          }
-        })
-      })
-    })
-    .then(() => {
-      info(`unpacking npm package ${npmTarget}`);
-      return execute(`tar --strip-components=1 -zvxf ${npmTarget} -C npm-unpacked`);
-    })
-    .then(output => {
-      info(`unpacked npm package ${npmTarget}`);
-    })
-    .catch(e => {
-      throw e.error;
-    })
-    .then(() => {
-      info('removing any unpacked git package');
-      return new Promise((resolve, reject) => {
-        rimraf('git-unpacked/*', e => {
-          if (e) {
-            reject(e);
-          } else {
-            resolve();
-          }
-        })
-      })
-    })
-    .then(() => {
-      info(`unpacking git package ${gitTarget}`);
-      return execute(`tar --strip-components=1 -zvxf ${gitTarget} -C git-unpacked`);
-    })
-    .then(() => {
-      info(`unpacked git package ${gitTarget}`);
-    })
-    .catch(e => {
-      throw e.error;
-    })
-    .then(() => {
-      return execute('diff -qr npm-unpacked/ git-unpacked/');
-    })
-    .catch(e => {
-      // find
-      // - files that are not the same in npm and git
-      // - files that are only in npm
-      if (e.error.code === 1) {
-        const lines = e.stdout.split('\n');
-        const differences = lines.filter(l => l.indexOf('Only in git-unpacked/:') !== 0);
-        if (differences.length) {
-          fatal(`unexpected differences for ${version}:\n${differences.join('\n')}`);
-          throw new Error('packages are different');
-        }
-      }
-      return e;
-    })
-    .then(output => {
-      //console.log(output.stdout);
-    })
-}
-
-//
-// download a file at a given url to a specified name
-//
-function download (url, name) {
-  return new Promise((resolve, reject) => {
-    const axiosOptions = {
-      url,
-      method: 'GET',
-      responseType: 'stream',
-    }
-
-    axios(axiosOptions)
-      .then(r => {
-        const writer = fs.createWriteStream(name)
-        r.data.pipe(writer);
-        writer.on('finish', () => {resolve(writer.bytesWritten)});
-        writer.on('error', reject);
-      })
-      .catch(reject);
-  })
-}
-
-//
-// execute a command
-//
-function execute (command, options) {
-  return new Promise((resolve, reject) => {
-    options = options || {};
-
-    exec(command, options, (error, stdout, stderr) => {
-      if (error) {
-        reject({error, stdout, stderr});
-      } else {
-        resolve({stdout, stderr});
-      }
-    });
-  });
-}
-
-//
-// get an array of the versions that match the user's requested range
-//
-function selectVersions (versions, requested) {
-  if (requested === 'latest') {
-    return versions.slice(-1);
-  }
-  return versions.filter(version => semver.satisfies(version, requested));
-}
-// https://api.github.com/repos/$REPOSITORY_NAME/tarball/$COMMIT_ID
-
-function showInfo (string) {
-  // eslint-disable-next-line no-console
-  console.log(`[ ${string} ]`);
-}
-
-function fatal (...args) {
-  // eslint-disable-next-line no-console
-  console.error(...args);
-}
-
-
-async function makeDirs (dirs, opts = {}) {
-  const made = [];
-  for (let i = 0; i < dirs.length; i++) {
-    const m = await pmkdirp(dirs[i]);
-    if (m) {
-      made.push(dirs[i]);
-    }
-  }
-  return made;
-}
-
-function pmkdirp (dir, opts = {}) {
-  return new Promise((resolve, reject) => {
-    mkdirp(dir, opts, function (e, made) {
-      if (e) {
-        reject(e);
-      } else {
-        resolve(made);
-      }
-    })
-  })
-}
