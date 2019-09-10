@@ -45,8 +45,8 @@ this.
 
 ## stuff to be done
 
-work to be done
 - allow output format with detail differences
 - improve tag not found errors in github
 - add `--base` option to create work directories in another place
 - improve error handling in general
+- add config file that allows default repositories based on package name
