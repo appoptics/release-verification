@@ -1,0 +1,59 @@
+{
+  "name": "appoptics_apm",
+  "downloads": 78491,
+  "version": "4.8.3",
+  "version_downloads": 243,
+  "platform": "ruby",
+  "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+  "info": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+  "licenses": [
+    "Librato Open License, Version 1.0"
+  ],
+  "metadata": {
+    "homepage_uri": "https://www.appoptics.com/",
+    "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+    "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+    "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+  },
+  "yanked": false,
+  "sha": "4d48e4f6ee7eb865314cbed6d47be2a77a1a4343a2a5a05192fbd877a8f5a1d7",
+  "project_uri": "https://rubygems.org/gems/appoptics_apm",
+  "gem_uri": "https://rubygems.org/gems/appoptics_apm-4.8.3.gem",
+  "homepage_uri": "https://www.appoptics.com/",
+  "wiki_uri": null,
+  "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/",
+  "mailing_list_uri": null,
+  "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+  "bug_tracker_uri": null,
+  "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+  "dependencies": {
+    "development": [
+      {
+        "name": "benchmark-ips",
+        "requirements": "\u003e= 2.7.2"
+      },
+      {
+        "name": "byebug",
+        "requirements": "\u003e= 8.0.0"
+      },
+      {
+        "name": "minitest-hooks",
+        "requirements": "\u003e= 1.5.0"
+      },
+      {
+        "name": "rake",
+        "requirements": "\u003e= 0.9.0"
+      }
+    ],
+    "runtime": [
+      {
+        "name": "json",
+        "requirements": "\u003e= 0"
+      },
+      {
+        "name": "no_proxy_fix",
+        "requirements": "\u003e= 0.1.2, ~\u003e 0.1.2"
+      }
+    ]
+  }
+}
