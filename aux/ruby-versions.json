@@ -1,0 +1,689 @@
+[
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2019-08-28T00:00:00.000Z",
+    "created_at": "2019-08-29T00:44:33.767Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 243,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.8.3",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "4d48e4f6ee7eb865314cbed6d47be2a77a1a4343a2a5a05192fbd877a8f5a1d7"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2019-05-23T00:00:00.000Z",
+    "created_at": "2019-05-24T00:00:06.367Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 2678,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.8.2",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "ab0d2ccb53c5bc448d8d311e715cb9e15d05cf1d5e45f22ad257d12bd1d693b3"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2019-05-16T00:00:00.000Z",
+    "created_at": "2019-05-16T23:44:52.948Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 486,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.8.1",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "b471bce909adbf1656d9ad5a46f62129a7947ff71f697cc953ad8f06492fc7d4"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2019-05-14T00:00:00.000Z",
+    "created_at": "2019-05-14T23:51:31.653Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 347,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.8.0",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "f87276e0554d2470841c0519b41024a06364b9257cc9a742821ac3efa98861ee"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2019-04-23T00:00:00.000Z",
+    "created_at": "2019-04-23T13:15:33.601Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 1496,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.7.0",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "850a1e68665432f728d1983f44bc458bace03cd167beb5f86704467790f317f3"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2019-03-28T00:00:00.000Z",
+    "created_at": "2019-03-28T17:20:37.865Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 1034,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.6.0",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "e3c2848efd198577a10c4dc03f662a300a234a48a37fd860c6d3b98a834efc50"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2019-02-15T00:00:00.000Z",
+    "created_at": "2019-02-16T01:50:26.671Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 7227,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.5.2",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "a74ee141611cd95ead803ba5b8620476a603977e38827b4a822081c03166a31d"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2019-02-05T00:00:00.000Z",
+    "created_at": "2019-02-05T21:13:35.626Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 932,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.5.1",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "5f87a298cfd2fd09b038b01e1808a3b716a3bc01b30262c0753351709cd19d47"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-12-19T00:00:00.000Z",
+    "created_at": "2018-12-19T23:54:41.356Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 17038,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.5.0",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "56006e49e13547a9e7f5dc912d17e89b8996aef3844ad1fd941dd6f8f29693ae"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-12-11T00:00:00.000Z",
+    "created_at": "2018-12-11T21:32:45.753Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 3479,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.4.1",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "e793728ca82f0fec684afc47c0545f82c397aa583ad03beccbd550ec4ed8292f"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-11-14T00:00:00.000Z",
+    "created_at": "2018-11-14T22:46:39.864Z",
+    "description": "Automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 2542,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.4.0",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "8dcd7b1eb63b536980431b28956664cac3fe74b12f0659da5762f6a8c515efa6"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-11-05T00:00:00.000Z",
+    "created_at": "2018-11-06T00:42:03.970Z",
+    "description": "     The appoptics_apm gem provides automatic tracing and metrics for Ruby applications. Get started at appoptics.com. @AppOptics\n",
+    "downloads_count": 693,
+    "metadata": {
+      "homepage_uri": "https://www.appoptics.com/",
+      "changelog_uri": "https://github.com/appoptics/appoptics-apm-ruby/releases",
+      "source_code_uri": "https://github.com/appoptics/appoptics-apm-ruby",
+      "documentation_uri": "https://docs.appoptics.com/kb/apm_tracing/ruby/"
+    },
+    "number": "4.3.1",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "5df1f1777cc3df814dee62a551ca0458a70886ced6585f785f9c476472ac0ad4"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-10-29T00:00:00.000Z",
+    "created_at": "2018-10-29T21:04:51.757Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 465,
+    "metadata": {},
+    "number": "4.3.0",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "eb918bfa5e8c5f85ee7edca76d8b808f1f55957aafc3aa24f28a4a3e5753cda6"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-09-24T00:00:00.000Z",
+    "created_at": "2018-09-24T18:17:42.946Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 4061,
+    "metadata": {},
+    "number": "4.2.7",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "35d0d547993bdae569282676a9243cceeb1387dfa284b24d77288663e52d85b7"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-09-24T00:00:00.000Z",
+    "created_at": "2018-09-24T07:52:39.246Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 287,
+    "metadata": {},
+    "number": "4.2.6",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "4a0edbe737f11889aa9451f9a4862a3387063ee3c7a3243b68d1280709dd729d"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-09-11T00:00:00.000Z",
+    "created_at": "2018-09-11T12:09:00.353Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 937,
+    "metadata": {},
+    "number": "4.2.5",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "c487bb86730816752bfa1c4e9106843dcc0c22d5b7502b757a962fea51336fa3"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-09-04T00:00:00.000Z",
+    "created_at": "2018-09-04T19:31:27.467Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 436,
+    "metadata": {},
+    "number": "4.2.4",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "13c09c1aa2dbfd80e45eb74f5d3e1b59a5984dc98308cc75d7755b1a85a88a5a"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-07-10T00:00:00.000Z",
+    "created_at": "2018-07-10T16:15:29.551Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 12085,
+    "metadata": {},
+    "number": "4.2.3",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "44d6856a98c6055a4b544bf5ca0df41cd3718c6b3350cb97b0ffbc94a1e99951"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-06-11T00:00:00.000Z",
+    "created_at": "2018-06-11T23:34:05.665Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 10426,
+    "metadata": {},
+    "number": "4.2.2",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "ccec58ede625c72753ce860e3221b71c9502cd3f3af512923e74fb0e55a4f8bf"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-05-31T00:00:00.000Z",
+    "created_at": "2018-05-31T19:13:53.647Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 411,
+    "metadata": {},
+    "number": "4.2.1",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "d6b423df7c10a561e57f13161448b0c30821255c4e77e6ba17938290847cebc2"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-05-24T00:00:00.000Z",
+    "created_at": "2018-05-25T01:53:12.058Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 385,
+    "metadata": {},
+    "number": "4.2.0",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "dc01a4e4e55dc245368e219a910208d34726c74e91033d105c006f908066efd6"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-05-09T00:00:00.000Z",
+    "created_at": "2018-05-09T23:33:51.992Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 612,
+    "metadata": {},
+    "number": "4.1.2",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "446e68fc9ccecbcd222d1c494bafd2309e6577df0b2e5eca841229bba0723164"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-05-03T00:00:00.000Z",
+    "created_at": "2018-05-04T00:37:43.074Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 574,
+    "metadata": {},
+    "number": "4.1.1",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "40c3360a7aeb8d1a94ce115c1741e465ebe2301f4e773a3c5c13438c93086893"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-04-11T00:00:00.000Z",
+    "created_at": "2018-04-12T07:07:27.136Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 534,
+    "metadata": {},
+    "number": "4.1.0",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 2.0.0",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "2ecc7587e5b376c4b5290a0a7e25c2d0440d65c48986b0ae0fb4aecc16bf112f"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-05-05T00:00:00.000Z",
+    "created_at": "2018-05-05T00:19:00.054Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 317,
+    "metadata": {},
+    "number": "4.0.9",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "ec8f497d7e7179f03fd0e37a5569a034296b0503c4231cd25e470b2f4e7b8571"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-04-13T00:00:00.000Z",
+    "created_at": "2018-04-13T12:59:46.519Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 308,
+    "metadata": {},
+    "number": "4.0.8",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "71cb90871e837d33188d07f4e1986973b067a366659d55e659fb7cee0fc7cfc6"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-03-28T00:00:00.000Z",
+    "created_at": "2018-03-29T00:53:30.773Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 2054,
+    "metadata": {},
+    "number": "4.0.7",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "e82c299e456dc82e82799e87f27f41d347dfd581dcaee08b5a62b2d49e7354e4"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-03-22T00:00:00.000Z",
+    "created_at": "2018-03-22T00:35:53.181Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 400,
+    "metadata": {},
+    "number": "4.0.6",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "cc12cf104329d07425a60cc7a6017511951bf5edce77227afa11165252500271"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-03-01T00:00:00.000Z",
+    "created_at": "2018-03-01T20:53:48.021Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 455,
+    "metadata": {},
+    "number": "4.0.5",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "d327443cbadca0c27e951bf7e1eb10da6b0f68528aec02c8fe21c90ab6aa1b32"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-02-22T00:00:00.000Z",
+    "created_at": "2018-02-22T23:24:39.256Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 443,
+    "metadata": {},
+    "number": "4.0.4",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "7215a3a510d8de5a8fd3102a7288f7cab75fa474cab9f37617241bd30d0867ba"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-02-09T00:00:00.000Z",
+    "created_at": "2018-02-09T23:45:10.568Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 3237,
+    "metadata": {},
+    "number": "4.0.3",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "a1cf2ee86252f517d381b6ba594e24bb6401c2558fba0e8b4308d3125feaea3c"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-01-30T00:00:00.000Z",
+    "created_at": "2018-01-30T22:56:18.852Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 1309,
+    "metadata": {},
+    "number": "4.0.2",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "ruby",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "c748e67b062c4ec568f48e80444a16ffb60e1c1fc4a825ea817a98c3b777d146"
+  },
+  {
+    "authors": "Maia Engeli, Peter Giacomo Lombardo, Spiros Eliopoulos",
+    "built_at": "2018-01-18T00:00:00.000Z",
+    "created_at": "2018-01-18T19:53:06.416Z",
+    "description": "The AppOpticsAPM gem provides performance instrumentation for MRI Ruby and related frameworks.",
+    "downloads_count": 566,
+    "metadata": {},
+    "number": "4.0.1",
+    "summary": "AppOptics APM performance instrumentation gem for Ruby",
+    "platform": "x86_64-linux",
+    "rubygems_version": "\u003e= 0",
+    "ruby_version": "\u003e= 1.9.3",
+    "prerelease": false,
+    "licenses": [
+      "Librato Open License, Version 1.0"
+    ],
+    "requirements": [],
+    "sha": "f8ec780c33accdf0605ce87f3fe7c4d75a52178330e0519f0240abd5f1a45e3e"
+  }
+]

@@ -1,0 +1,7 @@
+this is all in the <package>-verifier.js files, but:
+
+
+ruby-versions.json - fetch with 'https://rubygems.org/api/v1/versions/${package}.json'
+ruby-appoptics-apm.json - fetch with 'https://rubygems.org/api/v1/gems/rails.json'
+
+fetch a specific version with 'https://rubygems.org/downloads/${package}-${version}.gem'
