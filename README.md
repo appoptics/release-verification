@@ -49,4 +49,5 @@ this.
 - improve tag not found errors in github
 - add `--base` option to create work directories in another place
 - improve error handling in general
-- add config file that allows default repositories based on package name
+- add config file that allows default repositories based on package name (not sure - same project name across repos). maybe allow `rubygems/appoptics_apm`?
+- add python support
