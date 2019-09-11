@@ -1,6 +1,6 @@
 {
   "name": "release-verification",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "verify released packages match github",
   "main": "verify.js",
   "scripts": {
@@ -10,6 +10,19 @@
     "verify": "verify.js"
   },
   "author": "Bruce A. MacNaughton",
+  "keywords": [
+    "verification",
+    "release",
+    "integrity",
+    "vulnerability"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmacnaughton/release-verification"
+  },
+  "bugs": {
+    "url": "https://github.com/bmacnaughton/release-verification/issues"
+  },
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
