@@ -3,6 +3,7 @@
 
 const {makeNpmVerifier} = require('./lib/npm-verifier');
 const {makeRubyVerifier} = require('./lib/ruby-verifier');
+const {makePypiVerifier} = require('./lib/pypi-verifier');
 
 const {options, showHelp} = require('./lib/get-cli-options');
 
@@ -19,28 +20,40 @@ const redOff = '\x1b[m';
 
 // use pkg rather than package because it's reserved by javascript.
 const pkg = options._[0];
-const {versions, repository, info, differences, simulate, exclude} = options;
+const {versions, repository, info, differences, simulate, exclude, source} = options;
 
-const verifiers = {
+let sourceUrl = source;
+if (sourceUrl) {
+  sourceUrl = `https://github.com/${source}`;
+}
+
+const verifierMakers = {
   npm: makeNpmVerifier,
   rubygems: makeRubyVerifier,
+  pypi: makePypiVerifier,
 }
 
 async function main () {
-  const verifier = verifiers[repository];
+  const verifier = verifierMakers[repository];
   if (!verifier) {
-    const valid = Object.keys(verifiers).join(', ');
+    const valid = Object.keys(verifierMakers).join(', ');
     // eslint-disable-next-line no-console
     console.error(`${redOn}repository ${repository} not supported.${redOff} valid: ${valid}`);
     return 0;
   }
-  const nv = await verifier(pkg, {info, differences, simulate});
+  const nv = await verifier(pkg, {info, differences, simulate, sourceUrl});
+
+  if (nv instanceof Error) {
+    // eslint-disable-next-line no-console
+    console.error(`${redOn}? can't get package ${pkg} from ${repository} - ${nv.message}`);
+    return 1;
+  }
 
   const gmvOptions = options['include-prerelease'] ? {includePrerelease: true} : {};
   const versionList = nv.getMatchingVersions(versions, gmvOptions);
   if (versionList.length === 0) {
     // eslint-disable-next-line no-console
-    console.error(`${redOn}no versions matching ${versions}${redOff}`);
+    console.error(`${redOn}? no versions matching ${versions}${redOff}`);
     return 0;
   }
 
@@ -57,7 +70,8 @@ async function main () {
   results.forEach(result => {
     if (result.status === 'fatal') {
       // eslint-disable-next-line no-console
-      console.log(result.error);
+      console.log(`${redOn}? ${result.error.toString()}${redOff}`);
+      status = 1;
     } else if (result.status === 'error') {
       const diffResults = nv.extractDifferences(result, {differences, exclude});
       // there can be differences that aren't important
