@@ -13,10 +13,10 @@ if (options.help || options._.length !== 1) {
   return;
 }
 
-const greenOn = '\x1b[38;5;10m';
-const greenOff = '\x1b[m';
-const redOn = '\x1b[38;5;9m';
-const redOff = '\x1b[m';
+const greenOn = process.stdout.isTTY ? '\x1b[38;5;10m' : '';
+const greenOff = process.stdout.isTTY ? '\x1b[m' : '';
+const redOn = process.stderr.isTTY ? '\x1b[38;5;9m' : '';
+const redOff = process.stderr.isTTY ? '\x1b[m' : '';
 
 // use pkg rather than package because it's reserved by javascript.
 const pkg = options._[0];
@@ -25,6 +25,10 @@ const {versions, repository, info, differences, simulate, exclude, source} = opt
 let sourceUrl = source;
 if (sourceUrl) {
   sourceUrl = `https://github.com/${source}`;
+}
+let noWarn = false;
+if (options['no-warn']) {
+  noWarn = true;
 }
 
 const verifierMakers = {
@@ -41,7 +45,7 @@ async function main () {
     console.error(`${redOn}repository ${repository} not supported.${redOff} valid: ${valid}`);
     return 0;
   }
-  const nv = await verifier(pkg, {info, differences, simulate, sourceUrl});
+  const nv = await verifier(pkg, {info, noWarn, differences, simulate, sourceUrl});
 
   if (nv instanceof Error) {
     // eslint-disable-next-line no-console
@@ -70,7 +74,7 @@ async function main () {
   results.forEach(result => {
     if (result.status === 'fatal') {
       // eslint-disable-next-line no-console
-      console.log(`${redOn}? ${result.error.toString()}${redOff}`);
+      console.error(`${redOn}? ${result.error.toString()}${redOff}`);
       status = 1;
     } else if (result.status === 'error') {
       const diffResults = nv.extractDifferences(result, {differences, exclude});
@@ -81,7 +85,7 @@ async function main () {
       } else {
 
         // eslint-disable-next-line no-console
-        console.log(`${redOn}? ${differences} differences for ${result.version}:\n${diffResults.join('\n')}${redOff}`);
+        console.error(`${redOn}? ${differences} differences for ${result.version}:\n${diffResults.join('\n')}${redOff}`);
         status = 1;
       }
     } else if (result.status === 'good') {
