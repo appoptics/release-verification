@@ -1,0 +1,381 @@
+{
+  "info": {
+    "author": "SolarWinds, LLC",
+    "author_email": "support@appoptics.com",
+    "bugtrack_url": null,
+    "classifiers": [],
+    "description": "[![Build Status](https://travis-ci.com/librato/python-appoptics.svg?token=hJPGuB4cPyioy5R8LBV9&branch=ci)](https://travis-ci.com/librato/python-appoptics)\n\n# appoptics_apm\n\nThe 'appoptics_apm' module provides automatic instrumentation and metrics/tracing SDK hooks for use with [AppOptics](https://appoptics.com).\n\nThe appoptics_apm module provides middleware and other instrumentation for popular web frameworks such as Django, Tornado, Pyramid, and WSGI, as well as commonly used libraries like SQLAlchemy, httplib, redis, memcached.  Read more at [our full documentation](https://docs.appoptics.com/kb/apm_tracing/python/).\n\n\n## Installing\n\nThe Python instrumentation for AppOptics uses a module named `appoptics_apm`, which is distributed via pypi.\n\n```sh\npip install appoptics_apm\n```\n\nAlternately, you can use this repository to build a local copy.\n\n## Configuring\n\nSee our documentation on [configuring the python instrumentation](https://docs.appoptics.com/kb/apm_tracing/python/configure/).\n\n# Upgrading\n\nTo upgrade an existing installation, you simply need to run:\n\n```sh\npip install --upgrade appoptics_apm \n```\n\n## Running the Tests\n\n### Test dependencies\n\nThe test suite depends on the presence of several database and cache servers; consequently, the easiest way to get up and running is to use the included Dockerfile and `run_docker_dev.sh`.\n\nTo build the development container image:\n```\ndocker build -f Dockerfile -t ptdev:py27 .\n```\n\nThen run an interactive shell to run test suite:\n```\n./run_docker_dev.sh\n```\n\nTo run tests, in the container's shell, against the current version of Python:\n```sh\n./run_tests.sh\n```\n\nTo run tests, in the container's shell, against the various versions of Python:\n```sh\ndocker-compose build  && docker-compose up\n```\n\n### Test directory layout\n\nTests in test/unit are actually functional tests; naming is for historic\nreasons.  Tests in test/manual are for manual verification of certain\nbehaviors.\n\n## Support\n\nIf you find a bug or would like to request an enhancement, feel free to file\nan issue. For all other support requests, please email support@appoptics.com.\n\n## Contributing\n\nYou are obviously a person of great sense and intelligence. We happily\nappreciate all contributions to the appoptics_apm module whether it is documentation,\na bug fix, new instrumentation for a library or framework or anything else\nwe haven't thought of.\n\nWe welcome you to send us PRs. We also humbly request that any new\ninstrumentation submissions have corresponding tests that accompany\nthem. This way we don't break any of your additions when we (and others)\nmake changes after the fact.\n\n## Developer Resources\n\nWe have made a large effort to expose as much technical information\nas possible to assist developers wishing to contribute to the AppOptics module.\nBelow are the three major sources for information and help for developers:\n\n* The [AppOptics Knowledge Base](https://docs.appoptics.com/) has a large collection of technical articles or, if needed, you can submit a support request directly to the team.\n\nIf you have any questions or ideas, don't hesitate to contact us anytime.\n\nTo see the code related to the C++ extension, take a look in `appoptics_apm/swig`.\n\n## License\n\nCopyright (c) 2017 SolarWinds, LLC\n\nReleased under the [Librato Open License](http://docs.appoptics.com/Instrumentation/librato-open-license.html)",
+    "description_content_type": "",
+    "docs_url": null,
+    "download_url": "https://pypi.python.org/pypi/appoptics_apm",
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "home_page": "https://www.appoptics.com/monitor/python-performance",
+    "keywords": "appoptics_apm traceview tracelytics oboe liboboe instrumentation performance wsgi middleware django",
+    "license": "LICENSE.txt",
+    "maintainer": "",
+    "maintainer_email": "",
+    "name": "appoptics-apm",
+    "package_url": "https://pypi.org/project/appoptics-apm/",
+    "platform": "",
+    "project_url": "https://pypi.org/project/appoptics-apm/",
+    "project_urls": {
+      "Download": "https://pypi.python.org/pypi/appoptics_apm",
+      "Homepage": "https://www.appoptics.com/monitor/python-performance"
+    },
+    "release_url": "https://pypi.org/project/appoptics-apm/3.5.9/",
+    "requires_dist": null,
+    "requires_python": "",
+    "summary": "AppOptics APM libraries, instrumentation, and web middleware components for WSGI, Django, and Tornado.",
+    "version": "3.5.9"
+  },
+  "last_serial": 5264040,
+  "releases": {
+    "3.0.0.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "65c8456e8889720a6e68755286c9ae87",
+          "sha256": "121fd20dd79acf45ef6ab8760a74f4b8c73552238f24c24895bc160ca66d5486"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.0.0.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "65c8456e8889720a6e68755286c9ae87",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 4681157,
+        "upload_time": "2018-05-03T20:13:57",
+        "url": "https://files.pythonhosted.org/packages/0e/3c/a97aeedba80beb959c13334b7919669152a0829815a0c142246ce83c9581/appoptics_apm-3.0.0.0.tar.gz"
+      }
+    ],
+    "3.1.0.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "a9846dfdbb1b6532dd249f647b98c30d",
+          "sha256": "d6f357bc7d48f87fb0b0725e2050026f120222aa4e0dc32d9f1f9bf3bb2a02f9"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.1.0.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "a9846dfdbb1b6532dd249f647b98c30d",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 4626544,
+        "upload_time": "2018-06-07T01:23:03",
+        "url": "https://files.pythonhosted.org/packages/88/18/19ed22fffb165e0d79d3ce5884f5e6afe902cf277209b4cec31f5f8ce4b5/appoptics_apm-3.1.0.0.tar.gz"
+      }
+    ],
+    "3.2.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "39a859145014c020f90aa681e9af35b7",
+          "sha256": "b70a65f303034c062adbf46c42f664b9c9b710546c1da635137793dab2474217"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.2.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "39a859145014c020f90aa681e9af35b7",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 4628088,
+        "upload_time": "2018-07-12T16:27:58",
+        "url": "https://files.pythonhosted.org/packages/3b/38/c61fe4e626d294db1df275a6e7aba29dc1e08eed3d9d9f6dbd6bbbbc3fff/appoptics_apm-3.2.0.tar.gz"
+      }
+    ],
+    "3.2.0.1": [],
+    "3.3.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "038c1db42632e25beba84559305ccc19",
+          "sha256": "1bfa3222e7b5ed9d5e8f86abcfe64841e9bc7798ebdcdf7c759b1190ed407c9f"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.3.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "038c1db42632e25beba84559305ccc19",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2768471,
+        "upload_time": "2018-08-13T20:29:19",
+        "url": "https://files.pythonhosted.org/packages/f6/a4/a069515131aec09cf614fa4bb110c15e20f33a4043572d7d819a8f600602/appoptics_apm-3.3.0.tar.gz"
+      }
+    ],
+    "3.3.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "1dfc7c6a6b8361ca3d8a38c4377aed4c",
+          "sha256": "c17c0472570810cb169af75e9c61f30c9cd4c2747668b130e6d9abed0fee7a6d"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.3.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "1dfc7c6a6b8361ca3d8a38c4377aed4c",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2780060,
+        "upload_time": "2018-08-16T17:52:15",
+        "url": "https://files.pythonhosted.org/packages/dc/e3/b630cffec38a093a3967a0399369d1029f7b84fb0ad290b462da96fbc121/appoptics_apm-3.3.1.tar.gz"
+      }
+    ],
+    "3.4.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "3fb92b9ebc3db2606b26b7ff0a917c24",
+          "sha256": "42b9b323b0af42b4f36a9000e1258402f77333c76e6bafef8efc328994ab0a59"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "3fb92b9ebc3db2606b26b7ff0a917c24",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2781154,
+        "upload_time": "2018-09-04T15:40:11",
+        "url": "https://files.pythonhosted.org/packages/47/e8/9ca9bad2687f3aadb5bba20028db56a3930765ff462b070928dc60438d21/appoptics_apm-3.4.0.tar.gz"
+      }
+    ],
+    "3.4.0.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "3feea2fd1f519b3d17c897c8cb7ab099",
+          "sha256": "7b72f423e81ac50eb6a0e9af1c1a1a3cbd9dc898d22fad578287115737086205"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.0.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "3feea2fd1f519b3d17c897c8cb7ab099",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2781178,
+        "upload_time": "2018-09-04T16:55:53",
+        "url": "https://files.pythonhosted.org/packages/cc/d6/9b65914fcdc0ea05de5d29469ce73c4e3016f7d36ef016f4516b73669233/appoptics_apm-3.4.0.1.tar.gz"
+      }
+    ],
+    "3.4.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "edc9e1b43861136552edd5e0040c8864",
+          "sha256": "364799831195fda9fd3e3c17801bcb46906a2504ee273364519eea0859496b3d"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "edc9e1b43861136552edd5e0040c8864",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2778459,
+        "upload_time": "2018-09-14T16:22:31",
+        "url": "https://files.pythonhosted.org/packages/1c/f3/d977de32bf8c842dce5adadd5cce4864b121056dcb14cb038a928a8d7438/appoptics_apm-3.4.1.tar.gz"
+      }
+    ],
+    "3.4.2": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "4a90a1329421c452bc0b2122d9c42820",
+          "sha256": "21ff66bb1f522f22c591a2642c17bbc97cbec611ddd5b9876df3eff08b1b87ff"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.2.tar.gz",
+        "has_sig": false,
+        "md5_digest": "4a90a1329421c452bc0b2122d9c42820",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2778097,
+        "upload_time": "2018-10-01T23:09:15",
+        "url": "https://files.pythonhosted.org/packages/ed/52/03eeb5866c680e37f1c1aad504337502a0c10aef5c149e700d0386f83648/appoptics_apm-3.4.2.tar.gz"
+      }
+    ],
+    "3.4.3": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "9cede7db3db1aa8f8f7ff3adb7965160",
+          "sha256": "71d52213345ae21e866fcbbf69b0e7cea56776fd7e8d8d9a711d5bcbfa843b39"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.3.tar.gz",
+        "has_sig": false,
+        "md5_digest": "9cede7db3db1aa8f8f7ff3adb7965160",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2776450,
+        "upload_time": "2018-10-11T00:54:34",
+        "url": "https://files.pythonhosted.org/packages/f8/53/eeba53a5f6020c992e2762cc4b1a68c5ab6e0d276c40f951e1763b7b664c/appoptics_apm-3.4.3.tar.gz"
+      }
+    ],
+    "3.4.4": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "f74aa36d5cf893e0a8877ba2cbfb3335",
+          "sha256": "ea1053b9b88024b0c448bd229c4d598790073be6a678ecf5e8293fbd48ecd1e6"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.4.tar.gz",
+        "has_sig": false,
+        "md5_digest": "f74aa36d5cf893e0a8877ba2cbfb3335",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2782522,
+        "upload_time": "2018-11-06T00:32:26",
+        "url": "https://files.pythonhosted.org/packages/b9/35/f2c30cad42a8b7cc4fbc60bd9cbe12fc712aab9783b4a7e4c9b303e78d15/appoptics_apm-3.4.4.tar.gz"
+      }
+    ],
+    "3.4.5": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "28aa2dc4e06ad32164ce7252c934db0b",
+          "sha256": "21561f7c0fc83e89843d52de910ae447a2f9a51f73aa6864cd845c62a29d36ca"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.5.tar.gz",
+        "has_sig": false,
+        "md5_digest": "28aa2dc4e06ad32164ce7252c934db0b",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2799554,
+        "upload_time": "2018-11-23T17:55:21",
+        "url": "https://files.pythonhosted.org/packages/ad/63/688bf8c62521575354587af626b2e58c22c45d11aae98984f9ff99ad4156/appoptics_apm-3.4.5.tar.gz"
+      }
+    ],
+    "3.4.6": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "bb8e0a754b08fa1f8d67b9f8e7057a3d",
+          "sha256": "e692ee19882e41c1d2c4c51e1b9099deca9c6272a7efeb01014980d4621c53cb"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.6.tar.gz",
+        "has_sig": false,
+        "md5_digest": "bb8e0a754b08fa1f8d67b9f8e7057a3d",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2783454,
+        "upload_time": "2018-12-12T23:24:23",
+        "url": "https://files.pythonhosted.org/packages/25/c4/d55f34b33b0209c6a9044a0fb69e029c27439f65c0a79a08c91065875898/appoptics_apm-3.4.6.tar.gz"
+      }
+    ],
+    "3.4.7": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "866babc74589620c42a2b8fd3dca1f52",
+          "sha256": "1e07dda66208f3ca8aa56530cb623cc37ad2cd64fc632ed28f58ab80a1643428"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.7.tar.gz",
+        "has_sig": false,
+        "md5_digest": "866babc74589620c42a2b8fd3dca1f52",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2783465,
+        "upload_time": "2018-12-14T21:27:56",
+        "url": "https://files.pythonhosted.org/packages/d8/a6/e6126115132b7c63404cfcfd9b864dd9988229d20160fa05d49087341894/appoptics_apm-3.4.7.tar.gz"
+      }
+    ],
+    "3.4.8": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "6805e4628054e43b0c2afe1f3e0fc5a8",
+          "sha256": "a14927dc3872fc3164796e8090de6c4745d51a8881a527d209dc887496e571b0"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.8.tar.gz",
+        "has_sig": false,
+        "md5_digest": "6805e4628054e43b0c2afe1f3e0fc5a8",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2784474,
+        "upload_time": "2019-01-30T22:04:17",
+        "url": "https://files.pythonhosted.org/packages/7c/f3/8e5b136542154cd9157efeee937f1d1e1f6eef0d2dfc16ab43a75dda09d4/appoptics_apm-3.4.8.tar.gz"
+      }
+    ],
+    "3.4.9": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "fcb8c3b056fcaff59d1a016779eda70e",
+          "sha256": "7162717804a3ff9eb88c3c74fa173742c93790aeab2fcd6dac02ad1282693e6f"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.4.9.tar.gz",
+        "has_sig": false,
+        "md5_digest": "fcb8c3b056fcaff59d1a016779eda70e",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 2829013,
+        "upload_time": "2019-05-03T00:31:19",
+        "url": "https://files.pythonhosted.org/packages/b8/d0/39e708787a81a2b64507343d266411802cd3b52a8cd0c0f4abd2c26eba33/appoptics_apm-3.4.9.tar.gz"
+      }
+    ],
+    "3.5.9": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "ba369ba244192cf96e8c5b810a1141af",
+          "sha256": "c3135984a5a2e20213233965ee24a2a32f89f05874d4303b176522844e93c669"
+        },
+        "downloads": -1,
+        "filename": "appoptics_apm-3.5.9.tar.gz",
+        "has_sig": false,
+        "md5_digest": "ba369ba244192cf96e8c5b810a1141af",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 3238106,
+        "upload_time": "2019-05-13T19:40:42",
+        "url": "https://files.pythonhosted.org/packages/fd/c6/573c2c0bf5133f7fc39ba91e2f102cff1e02114bedcc20408138bafb4fad/appoptics_apm-3.5.9.tar.gz"
+      }
+    ]
+  },
+  "urls": [
+    {
+      "comment_text": "",
+      "digests": {
+        "md5": "ba369ba244192cf96e8c5b810a1141af",
+        "sha256": "c3135984a5a2e20213233965ee24a2a32f89f05874d4303b176522844e93c669"
+      },
+      "downloads": -1,
+      "filename": "appoptics_apm-3.5.9.tar.gz",
+      "has_sig": false,
+      "md5_digest": "ba369ba244192cf96e8c5b810a1141af",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": null,
+      "size": 3238106,
+      "upload_time": "2019-05-13T19:40:42",
+      "url": "https://files.pythonhosted.org/packages/fd/c6/573c2c0bf5133f7fc39ba91e2f102cff1e02114bedcc20408138bafb4fad/appoptics_apm-3.5.9.tar.gz"
+    }
+  ]
+}
