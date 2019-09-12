@@ -26,6 +26,13 @@ to verify a range of versions
 
 `$ node verify appoptics-apm -v '> 6.0.0'`
 
+if a released package (or version) doesn't contain a reference to the github source
+repository it can be specified with the `-S` option. the value of the `-S` option
+is the user and repository name on github, e.g., `bmacnaughton/release-verification`.
+
+`$ node verify -r rubygems appoptics_apm -v 4.3.0 -S appoptics/appoptics-apm-ruby`
+
+
 additional options can be found in `lib/get-cli-options.js` or via `$ node verify -h`
 
 ## adding a package repository
@@ -46,8 +53,5 @@ this.
 ## stuff to be done
 
 - allow output format with detail differences
-- improve tag not found errors in github
 - add `--base` option to create work directories in another place
-- improve error handling in general
-- add config file that allows default repositories based on package name (not sure - same project name across repos). maybe allow `rubygems/appoptics_apm`?
-- add python support
+- enable access to private repos in some way.
