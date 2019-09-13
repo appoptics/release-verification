@@ -28,7 +28,7 @@ to verify a range of versions
 
 if a released package (or version) doesn't contain a reference to the github source
 repository it can be specified with the `-S` option. the value of the `-S` option
-is the user and repository name on github, e.g., `bmacnaughton/release-verification`.
+is the user and repository name on github, e.g., `appoptics/release-verification`.
 
 `$ node verify -r rubygems appoptics_apm -v 4.3.0 -S appoptics/appoptics-apm-ruby`
 
