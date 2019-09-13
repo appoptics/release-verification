@@ -18,10 +18,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bmacnaughton/release-verification"
+    "url": "https://github.com/appoptics/release-verification"
   },
   "bugs": {
-    "url": "https://github.com/bmacnaughton/release-verification/issues"
+    "url": "https://github.com/appoptics/release-verification/issues"
   },
   "license": "ISC",
   "dependencies": {
