@@ -73,7 +73,7 @@ describe('command-line tests', function () {
   });
 
   it('should allow specifying the repository', function () {
-    return execute('./verify.js release-verification -W -v 1.0.0 -S bmacnaughton/release-verification')
+    return execute('./verify.js release-verification -W -v 1.0.0 -S appoptics/release-verification')
       .then(r => {
         const {exitCode, error, stdout, stderr} = r;
         expect(exitCode).equal(0, 'exit code should be 0');
