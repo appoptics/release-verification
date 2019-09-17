@@ -8,8 +8,8 @@ chai.use(require('chai-string'));
 describe('command-line tests', function () {
   this.timeout(10000);
 
-  it('should verify the latest version', function () {
-    return execute('./verify.js release-verification')
+  it('should verify that v2.0.0 is correct', function () {
+    return execute('./verify.js release-verification -v 2.0.0')
       .then(r => {
         const {exitCode, error, stdout, stderr} = r;
         expect(exitCode).equal(0, 'exit code should be 0');
@@ -21,7 +21,7 @@ describe('command-line tests', function () {
   });
 
   it('should suppress warnings if requested', function () {
-    return execute('./verify.js release-verification -W')
+    return execute('./verify.js release-verification -v 2.0.0 -W')
       .then(r => {
         const {exitCode, error, stdout, stderr} = r;
         expect(exitCode).equal(0, 'exit code should be 0');
@@ -84,7 +84,8 @@ describe('command-line tests', function () {
   });
 
   it('should allow specifying a version range', function () {
-    return execute('./verify.js release-verification -v \'>= 1.0.0\'')
+    const cmd = './verify.js release-verification -v \'>= 1.0.0 < 3.0.0\'';
+    return execute(cmd)
       .then(r => {
         return new Error('should not return non-error');
       })
@@ -98,7 +99,7 @@ describe('command-line tests', function () {
           'Only in pkg-unpacked/lib: pypi-verifier.js',
           ''].join('\n');
         expect(exitCode).equal(1, 'exit code should be 1');
-        expect(error.message).startsWith('Command failed: ./verify.js release-verification -v \'>= 1.0.0\'');
+        expect(error.message).startsWith(`Command failed: ${cmd}`);
         expect(stdout).equal(xstdout);
         expect(stderr).equal(xstderr);
       })
