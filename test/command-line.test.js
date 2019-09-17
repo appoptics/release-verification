@@ -104,6 +104,90 @@ describe('command-line tests', function () {
       })
   });
 
+  it('should work with rubygems', function () {
+    return execute('./verify.js -r rubygems appoptics_apm -W')
+      .then(r => {
+        return new Error('should not return non-error');
+      })
+      .catch(e => {
+        const {exitCode, error, stdout, stderr} = e;
+        const xstderr = [
+          '? important differences for 4.9.0:',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: bson',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe_debug.h',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe.h',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe.hpp',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe_wrap.cxx',
+          ''
+        ].join('\n');
+
+        expect(exitCode).equal(1, 'exit code should be 1');
+        expect(error.message).startsWith('Command failed: ./verify.js -r rubygems appoptics_apm -W');
+        expect(stdout).equal('\ndifferences\n');
+        expect(stderr).equal(xstderr);
+      })
+  })
+
+  it('should allow excluding a directory', function () {
+    return execute('./verify.js -r rubygems appoptics_apm -v 4.9.0 -W -X ext/oboe_metal/src')
+      .then(r => {
+        const {exitCode, error, stdout, stderr} = r;
+        expect(exitCode).equal(0, 'exit code should be 0');
+        expect(error).equal(null);
+        expect(stdout).equal('\n✓ no important differences 4.9.0\ndone\n');
+        expect(stderr).equal('');
+      })
+      .catch(e => {
+        throw new Error(`should not return an error ${e.message}`);
+      })
+  })
+
+  it('should allow excluding a specific file', function () {
+    return execute('./verify.js -r rubygems appoptics_apm -v 4.9.0 -W -x ext/oboe_metal/src/oboe_wrap.cxx')
+      .then(r => {
+        throw new Error('should not return non-error');
+      })
+      .catch(e => {
+        const {exitCode, error, stdout, stderr} = e;
+        const xstderr = [
+          '? important differences for 4.9.0:',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: bson',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe_debug.h',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe.h',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe.hpp',
+          //'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe_wrap.cxx',
+          ''
+        ].join('\n');
+
+        expect(exitCode).equal(1, 'exit code should be 1');
+        expect(error.message).startsWith('Command failed: ./verify.js -r rubygems appoptics_apm -v 4.9.0 -W -x');
+        expect(stdout).equal('\ndifferences\n');
+        expect(stderr).equal(xstderr);
+      })
+  })
+
+  it('should work with a config file', function () {
+    const cwd = process.env.PWD;
+    const cmd = `./verify.js -r rubygems appoptics_apm -v 4.9.0 -c ${cwd}/test/test-config.js`;
+    return execute(cmd)
+      .then(r => {
+        throw new Error('should not return a non-error');
+      })
+      .catch(e => {
+        const {exitCode, error, stdout, stderr} = e;
+        const xstderr = [
+          '? important differences for 4.9.0:',
+          'Only in pkg/pkg-unpacked/ext/oboe_metal/src: oboe_wrap.cxx',
+          ''
+        ].join('\n');
+
+        expect(exitCode).equal(1, 'exit code should be 1');
+        expect(error.message).startsWith(`Command failed: ${cmd}`);
+        expect(stdout).equal('\ndifferences\n');
+        expect(stderr).equal(xstderr);
+      })
+  })
+
 })
 
 //

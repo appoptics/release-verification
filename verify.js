@@ -13,16 +13,25 @@
 'use strict'
 
 const {makeNpmVerifier} = require('./lib/npm-verifier');
-const {makeRubyVerifier} = require('./lib/ruby-verifier');
+const {makeRubygemsVerifier} = require('./lib/rubygems-verifier');
 const {makePypiVerifier} = require('./lib/pypi-verifier');
 
-const {options, showHelp} = require('./lib/get-cli-options');
+const getOptions = require('./lib/get-cli-options');
 
+const {cliOptions, showHelp, error} = getOptions({configFile: {key: 'c', alias: 'config-file'}});
 
-if (options.help || options._.length !== 1) {
+if (cliOptions.help || cliOptions._.length !== 1) {
   showHelp();
   return;
 }
+
+if (error) {
+  // eslint-disable-next-line no-console
+  console.error(`fatal error: ${error}`);
+  process.exit(1);
+  return;
+}
+
 
 const greenOn = process.stdout.isTTY ? '\x1b[38;5;10m' : '';
 const greenOff = process.stdout.isTTY ? '\x1b[m' : '';
@@ -30,21 +39,27 @@ const redOn = process.stderr.isTTY ? '\x1b[38;5;9m' : '';
 const redOff = process.stderr.isTTY ? '\x1b[m' : '';
 
 // use pkg rather than package because it's reserved by javascript.
-const pkg = options._[0];
-const {versions, repository, info, differences, simulate, exclude, source} = options;
+const pkg = cliOptions._[0];
+const {
+  versions,
+  repository,
+  info,
+  differences,
+  simulate,
+  source,
+  excludeFile,
+  excludeDir,
+  noWarn,
+} = cliOptions;
 
 let sourceUrl = source;
 if (sourceUrl) {
   sourceUrl = `https://github.com/${source}`;
 }
-let noWarn = false;
-if (options['no-warn']) {
-  noWarn = true;
-}
 
 const verifierMakers = {
   npm: makeNpmVerifier,
-  rubygems: makeRubyVerifier,
+  rubygems: makeRubygemsVerifier,
   pypi: makePypiVerifier,
 }
 
@@ -64,7 +79,7 @@ async function main () {
     return 1;
   }
 
-  const gmvOptions = options['include-prerelease'] ? {includePrerelease: true} : {};
+  const gmvOptions = cliOptions.includePrerelease ? {includePrerelease: true} : {};
   const versionList = nv.getMatchingVersions(versions, gmvOptions);
   if (versionList.length === 0) {
     // eslint-disable-next-line no-console
@@ -88,7 +103,7 @@ async function main () {
       console.error(`${redOn}? ${result.error.toString()}${redOff}`);
       status = 1;
     } else if (result.status === 'error') {
-      const diffResults = nv.extractDifferences(result, {differences, exclude});
+      const diffResults = nv.extractDifferences(result, {differences, excludeDir, excludeFile});
       // there can be differences that aren't important
       if (!diffResults) {
         // eslint-disable-next-line no-console
