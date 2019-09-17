@@ -5,16 +5,20 @@ const chai = require('chai');
 const expect = chai.expect;
 chai.use(require('chai-string'));
 
+const packageJson = require('../package.json');
+
 describe('command-line tests', function () {
   this.timeout(10000);
 
-  it('should verify that v2.0.0 is correct', function () {
-    return execute('./verify.js release-verification -v 2.0.0')
+  it('should verify that the latest version is correct', function () {
+    // allow testing a previous version if the local version has been bumped.
+    const testVersion = process.env.RV_TEST_VERSION || packageJson.version;
+    return execute('./verify.js release-verification')
       .then(r => {
         const {exitCode, error, stdout, stderr} = r;
         expect(exitCode).equal(0, 'exit code should be 0');
         expect(error).equal(null);
-        expect(stdout).equal('\n✓ no important differences 2.0.0\ndone\n');
+        expect(stdout).equal(`\n✓ no important differences ${testVersion}\ndone\n`);
         expect(stderr).equal('% no repository information for version 1.0.0\n');
         return error;
       });
