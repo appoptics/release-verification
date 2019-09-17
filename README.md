@@ -63,3 +63,4 @@ this.
 - allow output format with detail differences
 - add `--base` option to create work directories in another place
 - enable access to private repos in some way.
+- allow tag format in github to be specified. currently assumes `v1.0.0` but some repos use `1.0.0`
