@@ -46,11 +46,10 @@ additional options can be found in `lib/get-cli-options.js` or via `$ node verif
 ## adding a package repository
 
 i've tried to design the this so that repositories can be added with a minimum of
-effort though the code is the only real documentation. to do so add a `PackageVerifier`
-class that extends `BaseVerifier` in `lib/<package>-verifier.js`, implement the virtual
-methods (and let me know what i've missed in the code and/or documentation for this).
-then import your file and add the mapping of the repository name to the class in
-`verify.js`.
+effort though the code is the only real documentation. to do so add a `<package-repository>Verifier`
+class that extends `BaseVerifier` in a file named `lib/<package-repository>-verifier.js`,
+implement the virtual methods (and let me know what i've missed in the code and/or documentation for this).
+then import your file and add the mapping of the repository name to the class in `verify.js`.
 
 ## adding a source repository
 
@@ -63,4 +62,3 @@ this.
 - allow output format with detail differences
 - add `--base` option to create work directories in another place
 - enable access to private repos in some way.
-- allow tag format in github to be specified. currently assumes `v1.0.0` but some repos use `1.0.0`
