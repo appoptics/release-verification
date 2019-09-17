@@ -11,6 +11,8 @@ ruby-appoptics-apm.json - fetched with 'https://rubygems.org/api/v1/gems/rails.j
 
 fetch a specific version with 'https://rubygems.org/downloads/${package}-${version}.gem'
 
+appoptics_apm-4.9.0.gem - an example gem file. was used to figure out how to write rubygems/
+
 pypi
 ----
 pypi-appoptics-apm.json - fetched with 'https://pypi.org/pypi/${package}/json'

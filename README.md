@@ -32,6 +32,14 @@ is the user and repository name on github, e.g., `appoptics/release-verification
 
 `$ node verify -r rubygems appoptics_apm -v 4.3.0 -S appoptics/appoptics-apm-ruby`
 
+it's also possible to specify a config file. a config file essentially provides default
+values for options, i.e., specifying an option on the command line overrides what is in
+the config file. defaults can be either the cli option name or the alias. in the case of
+aliases that contain dash characters the config file option is the camelCase version of
+the kebab-case name, e.g. kebabCase.
+
+`$ node verify -r rubygems appoptics_apm -v 4.9.0 -c ./test/test-config.js`
+
 
 additional options can be found in `lib/get-cli-options.js` or via `$ node verify -h`
 
