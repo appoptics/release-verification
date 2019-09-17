@@ -50,6 +50,7 @@ const {
   excludeFile,
   excludeDir,
   noWarn,
+  tagTemplate,
 } = cliOptions;
 
 let sourceUrl = source;
@@ -57,10 +58,14 @@ if (sourceUrl) {
   sourceUrl = `https://github.com/${source}`;
 }
 
+// these options are passed to the constructor. others are needed for getMatchingVersions()
+// and extractDifferences().
+const constructorOptions = {info, noWarn, differences, simulate, sourceUrl, tagTemplate};
+
 const verifierMakers = {
-  npm: makeNpmVerifier,
-  rubygems: makeRubygemsVerifier,
-  pypi: makePypiVerifier,
+  npm: {maker: makeNpmVerifier, tagTemplate: 'v${version}'},
+  rubygems: {maker: makeRubygemsVerifier, tagTemplate: '${version}'},
+  pypi: {maker: makePypiVerifier, tagTemplate: 'v${version}'},
 }
 
 async function main () {
@@ -71,7 +76,18 @@ async function main () {
     console.error(`${redOn}repository ${repository} not supported.${redOff} valid: ${valid}`);
     return 0;
   }
-  const nv = await verifier(pkg, {info, noWarn, differences, simulate, sourceUrl});
+  // warn about pypi
+  if (verifier === verifierMakers.pypi) {
+    // eslint-disable-next-line no-console
+    console.warn('the pypi verifier is completely untested. proceed with caution');
+  }
+
+  // supply a default tagTemplate based on the verifier if non-specified.
+  if (!constructorOptions.tagTemplate) {
+    constructorOptions.tagTemplate = verifier.tagTemplate;
+  }
+
+  const nv = await verifier.maker(pkg, constructorOptions);
 
   if (nv instanceof Error) {
     // eslint-disable-next-line no-console

@@ -1,6 +1,6 @@
 {
   "name": "release-verification",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "verify released packages match github",
   "main": "verify.js",
   "scripts": {
