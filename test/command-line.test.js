@@ -167,8 +167,7 @@ describe('command-line tests', function () {
   })
 
   it('should work with a config file', function () {
-    const cwd = process.env.PWD;
-    const cmd = `./verify.js -r rubygems appoptics_apm -v 4.9.0 -c ${cwd}/test/test-config.js`;
+    const cmd = './verify.js -r rubygems appoptics_apm -v 4.9.0 -c test/test-config.js';
     return execute(cmd)
       .then(r => {
         throw new Error('should not return a non-error');
