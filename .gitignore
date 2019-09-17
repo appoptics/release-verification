@@ -4,5 +4,6 @@ pkg/
 pkg-unpacked/
 git/
 git-unpacked/
-release-verification-*.tgz
+*.tgz
+*.tar.gz
 .vscode
