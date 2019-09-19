@@ -62,3 +62,4 @@ this.
 - allow output format with detail differences
 - add `--base` option to create work directories in another place
 - enable access to private repos in some way.
+- document the api that `verify.js` uses.
