@@ -65,7 +65,7 @@ const constructorOptions = {info, noWarn, differences, simulate, sourceUrl, tagT
 const verifierMakers = {
   npm: {maker: makeNpmVerifier, tagTemplate: 'v${version}'},
   rubygems: {maker: makeRubygemsVerifier, tagTemplate: '${version}'},
-  pypi: {maker: makePypiVerifier, tagTemplate: 'v${version}'},
+  pypi: {maker: makePypiVerifier, tagTemplate: '${version}'},
 }
 
 async function main () {
