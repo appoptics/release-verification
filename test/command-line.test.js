@@ -11,7 +11,7 @@ describe('command-line tests', function () {
   this.timeout(10000);
 
   it('should verify that the latest version is correct', function () {
-    // allow testing a previous version if the local version has been bumped.
+    // allow testing a previous "latest" version if the local version has been bumped.
     const testVersion = process.env.RV_TEST_VERSION || packageJson.version;
     return execute('./verify.js release-verification')
       .then(r => {
