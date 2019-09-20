@@ -192,6 +192,31 @@ describe('command-line tests', function () {
       })
   })
 
+  it('should work with pypi and a public github repo', function () {
+    const cmd = './verify.js -r pypi wdb -v 3.3.0';
+    return execute(cmd)
+      .then(r => {
+        throw new Error('should not return a non-error');
+      })
+      .catch(e => {
+        const {exitCode, error, stdout, stderr} = e;
+        const xstderr = [
+          '? important differences for 3.3.0:',
+          'Only in pkg-unpacked: PKG-INFO',
+          'Files pkg-unpacked/setup.cfg and git-unpacked/setup.cfg differ',
+          'Only in pkg-unpacked: setup.py',
+          'Only in pkg-unpacked: wdb',
+          'Only in pkg-unpacked: wdb.egg-info',
+          ''
+        ].join('\n');
+
+        expect(exitCode).equal(1, 'exit code should be 1');
+        expect(error.message).startsWith(`Command failed: ${cmd}`);
+        expect(stdout).equal('\ndifferences\n');
+        expect(stderr).equal(xstderr);
+      })
+  })
+
   const TOKEN = process.env.GIT_TOKEN;
   const test = TOKEN ? it : it.skip;
 
