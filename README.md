@@ -1,5 +1,5 @@
 
-## release-verifier
+## release-verification
 
 release-verifier is a command line tool that verifies a released package
 matches that same tagged version in a source repository.
@@ -47,7 +47,7 @@ config file property. the `test` directory has two config file examples.
 `$ node verify -r rubygems appoptics_apm -v 4.9.0 -c ./test/test-config-rubygems.js`
 
 
-some github repositories are private. in order to work access private repositories the user
+some github repositories are private. in order to access private repositories the user
 must be authenticated and supply a github token on the command line using the `--token`
 option.
 
@@ -61,7 +61,8 @@ additional options can be found in `lib/get-cli-options.js` or via `$ node verif
 i've tried to design the this so that repositories can be added with a minimum of
 effort. but i'm discovering the differences in various repositories as i go through them,
 so the design could be better. and the code is the only real documentation. so if you have
-a repository you'd like added let me know.
+a repository you'd like added let me know; pull requests are very much appreciated and
+will be prioritized.
 
 to add a package-repository start by creating a `<package-repository>Verifier` class that
 extends `BaseVerifier`. put it in a file named `lib/<package-repository>-verifier.js`,
@@ -83,3 +84,4 @@ repository is less abstracted than the package repositories.
 - document the api that `verify.js` uses.
 - add bitbucket support.
 - add download support to populate either pkg-unpacked or git-unpacked with external dependencies.
+- consider adding github authentication.
