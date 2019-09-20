@@ -172,7 +172,7 @@ describe('command-line tests', function () {
   })
 
   it('should work with a config file', function () {
-    const cmd = './verify.js -r rubygems appoptics_apm -v 4.9.0 -c test/test-config.js';
+    const cmd = './verify.js -r rubygems appoptics_apm -v 4.9.0 -c test/test-config-rubygems.js';
     return execute(cmd)
       .then(r => {
         throw new Error('should not return a non-error');
@@ -185,6 +185,63 @@ describe('command-line tests', function () {
           ''
         ].join('\n');
 
+        expect(exitCode).equal(1, 'exit code should be 1');
+        expect(error.message).startsWith(`Command failed: ${cmd}`);
+        expect(stdout).equal('\ndifferences\n');
+        expect(stderr).equal(xstderr);
+      })
+  })
+
+  const TOKEN = process.env.GIT_TOKEN;
+  const test = TOKEN ? it : it.skip;
+
+  test('should work with pypi and private github repository', function () {
+    const cmd = `./verify.js -r pypi appoptics-apm -S librato/python-appoptics -v 3.5.9 -k ${TOKEN}`;
+    return execute(cmd)
+      .then(r => {
+        throw new Error('should not return a non-error');
+      })
+      .catch(e => {
+        const {exitCode, error, stdout, stderr} = e;
+        const xstderr = [
+          '? important differences for 3.5.9:',
+          'Only in pkg-unpacked/appoptics_apm/swig/bson: bson.h',
+          'Only in pkg-unpacked/appoptics_apm/swig/bson: platform_hacks.h',
+          'Only in pkg-unpacked/appoptics_apm/swig: liboboe-1.0-alpine-x86_64.so.0.0.0',
+          'Only in pkg-unpacked/appoptics_apm/swig: liboboe-1.0-x86_64.so.0.0.0',
+          'Only in pkg-unpacked/appoptics_apm/swig: oboe_debug.h',
+          'Only in pkg-unpacked/appoptics_apm/swig: oboe.h',
+          'Only in pkg-unpacked/appoptics_apm/swig: oboe.hpp',
+          'Only in pkg-unpacked/appoptics_apm/swig: oboe.py',
+          'Only in pkg-unpacked/appoptics_apm/swig: oboe_wrap.cxx',
+          'Only in pkg-unpacked/appoptics_apm/swig: VERSION',
+          'Only in pkg-unpacked: appoptics_apm.egg-info',
+          'Only in pkg-unpacked: PKG-INFO',
+          'Files pkg-unpacked/README.md and git-unpacked/README.md differ',
+          'Only in pkg-unpacked: setup.cfg',
+          ''
+        ].join('\n');
+        expect(exitCode).equal(1, 'exit code should be 1');
+        expect(error.message).startsWith(`Command failed: ${cmd}`);
+        expect(stdout).equal('\ndifferences\n');
+        expect(stderr).equal(xstderr);
+      })
+  })
+
+  test('should exclude directories and files using config file', function () {
+    const cmd = `./verify.js -r pypi appoptics-apm -S librato/python-appoptics -v 3.5.9 -k ${TOKEN}`;
+    const cmdWithConfig = cmd + ' -c test/test-config-pypi.js';
+    return execute(cmdWithConfig)
+      .then(r => {
+        throw new Error('should not return a non-error');
+      })
+      .catch(e => {
+        const {exitCode, error, stdout, stderr} = e;
+        const xstderr = [
+          '? important differences for 3.5.9:',
+          'Files pkg-unpacked/README.md and git-unpacked/README.md differ',
+          ''
+        ].join('\n');
         expect(exitCode).equal(1, 'exit code should be 1');
         expect(error.message).startsWith(`Command failed: ${cmd}`);
         expect(stdout).equal('\ndifferences\n');
