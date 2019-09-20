@@ -79,11 +79,6 @@ async function main () {
     console.error(`${redOn}repository ${repository} not supported.${redOff} valid: ${valid}`);
     return 0;
   }
-  // warn about pypi
-  if (verifier === verifierMakers.pypi) {
-    // eslint-disable-next-line no-console
-    console.warn('the pypi verifier is completely untested. proceed with caution');
-  }
 
   // supply a default tagTemplate based on the verifier if non-specified.
   if (!constructorOptions.tagTemplate) {
