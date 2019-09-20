@@ -8,5 +8,5 @@ module.exports = {
     'ext/oboe_metal/src/oboe_debug.h',
   ],
   excludeDir: undefined,
-  noWarn: true
+  noWarn: true,
 }
