@@ -274,6 +274,27 @@ describe('command-line tests', function () {
       })
   })
 
+  test('should handle the source option in the config file', function () {
+    const cmd = `./verify.js -r pypi appoptics-apm -v 3.5.9 -k ${TOKEN}`;
+    const cmdWithConfig = cmd + ' -c test/test-config-pypi-source.js';
+    return execute(cmdWithConfig)
+      .then(r => {
+        throw new Error('should not return a non-error');
+      })
+      .catch(e => {
+        const {exitCode, error, stdout, stderr} = e;
+        const xstderr = [
+          '? important differences for 3.5.9:',
+          'Files pkg-unpacked/README.md and git-unpacked/README.md differ',
+          ''
+        ].join('\n');
+        expect(exitCode).equal(1, 'exit code should be 1');
+        expect(error.message).startsWith(`Command failed: ${cmd}`);
+        expect(stdout).equal('\ndifferences\n');
+        expect(stderr).equal(xstderr);
+      })
+  })
+
 })
 
 //
