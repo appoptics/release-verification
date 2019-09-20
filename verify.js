@@ -51,8 +51,11 @@ const {
   excludeDir,
   noWarn,
   tagTemplate,
+  token,              // this is the github access token for an authenticated user
+  otp,                // used only if actually doing authentication in the future
 } = cliOptions;
 
+// the library doesn't fill in the repository name
 let sourceUrl = source;
 if (sourceUrl) {
   sourceUrl = `https://github.com/${source}`;
@@ -60,7 +63,7 @@ if (sourceUrl) {
 
 // these options are passed to the constructor. others are needed for getMatchingVersions()
 // and extractDifferences().
-const constructorOptions = {info, noWarn, differences, simulate, sourceUrl, tagTemplate};
+const constructorOptions = {info, noWarn, differences, simulate, sourceUrl, tagTemplate, token, otp};
 
 const verifierMakers = {
   npm: {maker: makeNpmVerifier, tagTemplate: 'v${version}'},
